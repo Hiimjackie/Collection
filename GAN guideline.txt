@@ -1,0 +1,155 @@
+Detection :
+DPM -> R-CNN
+YOLO  強調速度
+
+GAN:
+1. 
+CC-GAN
+這種模型能用半監督學習的方法，修補圖像上缺失的部分。
+Code：
+
+https://github.com/eriklindern…/…/blob/master/ccgan/ccgan.py
+
+Paper：
+
+Semi-Supervised Learning with Context-Conditional Generative Adversarial Networks
+
+Emily Denton, Sam Gross, Rob Fergus
+
+[1611.06430] Semi-Supervised Learning with Context-Conditional Generative Adversarial Networks
+
+2.
+Adversarial Autoencoder
+這種模型簡稱AAE，是一種概率性自編碼器，運用GAN，通過將自編碼器的隱藏編碼向量和任意先驗分佈進行匹配來進行變分推斷，可以用於半監督分類、分離圖像的風格和內容、無監督聚類、降維、數據可視化等方面。
+
+在論文中，研究人員給出了用MNIST和多倫多人臉數據集 (TFD)訓練的模型所生成的樣本。
+code：
+
+https://github.com/…/…/master/aae/adversarial_autoencoder.py
+
+paper：
+
+Adversarial Autoencoders
+
+Alireza Makhzani, Jonathon Shlens, Navdeep Jaitly, Ian Goodfellow, Brendan Frey
+
+[1511.05644] Adversarial Autoencoders
+
+3.
+BiGAN
+全稱Bidirectional GAN，也就是雙向GAN。這種變體能學習反向的映射，也就是將數據投射回隱藏空間。
+Code：
+
+https://github.com/eriklindern…/…/blob/master/bigan/bigan.py
+
+Paper：
+
+Adversarial Feature Learning
+
+Jeff Donahue, Philipp Krahenbuhl, Trevor Darrell
+
+[1605.09782] Adversarial Feature Learning
+
+4.
+Context Encoder
+這是一個修補圖像的卷積神經網絡（CNN），能根據周圍像素來生成圖像上任意區域的內容。
+Code：
+
+https://github.com/…/mas…/context_encoder/context_encoder.py
+
+Paper：
+
+Context Encoders: Feature Learning by Inpainting
+
+Deepak Pathak, Philipp Krahenbuhl, Jeff Donahue, Trevor Darrell, Alexei A. Efros
+
+Feature Learning by Inpainting
+
+5.
+CycleGAN
+這個模型是加州大學伯克利分校的一項研究成果，可以在沒有成對訓練數據的情況下，實現圖像風格的轉換。
+Code：
+
+https://github.com/…/Keras…/blob/master/cyclegan/cyclegan.py
+
+Paper：
+
+Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks
+
+Jun-Yan Zhu, Taesung Park, Phillip Isola, Alexei A. Efros
+
+[1703.10593] Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks
+
+論文原作者開源了Torch和PyTorch的實現代碼，詳情見項目主頁：
+
+Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks
+
+6.
+GAN
+對，就是Ian Goodfellow那個原版GAN。
+Code：
+
+https://github.com/eriklinder…/Keras-GAN/…/master/gan/gan.py
+
+Paper：
+
+Generative Adversarial Networks
+
+Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
+
+[1406.2661] Generative Adversarial Networks
+
+Note:(7).
+LSGAN
+最小平方GAN（Least Squares GAN）的提出，是?了解決GAN無監督學習訓練中梯度消失的問題，在鑑別器上使用了最小平方損失函數。
+
+Code：
+
+https://github.com/eriklindern…/…/blob/master/lsgan/lsgan.py
+
+Paper：
+
+Least Squares Generative Adversarial Networks
+
+Xudong Mao, Qing Li, Haoran Xie, Raymond Y.K. Lau, Zhen Wang, Stephen Paul Smolley
+
+[1611.04076] Least Squares Generative Adversarial Networks
+
+Note:(8).
+SGAN
+這個變體的全稱非常直白：半監督（Semi-Supervised）生成對抗網絡。它通過強制讓辨別器輸出類別標籤，實現了GAN在半監督環境下的訓練。
+
+Code：
+
+https://github.com/eriklindernor…/…/blob/master/sgan/sgan.py
+
+Paper:
+
+Semi-Supervised Learning with Generative Adversarial Networks
+
+Augustus Odena
+
+[1606.01583] Semi-Supervised Learning with Generative Adversarial Networks
+
+Note:(9).
+WGAN
+這種變體全稱Wasserstein GAN，在學習分佈上使用了Wasserstein距離，也叫Earth-Mover距離。新模型提高了學習的穩定性，消除了模型崩潰等問題，並給出了在debug或搜索超參數時有參考意義的學習曲線。
+
+本文所介紹repo中的WGAN實現，使用了DCGAN的生成器和辨別器。
+
+Code：
+
+https://github.com/eriklindernor…/…/blob/master/wgan/wgan.py
+
+Paper：
+
+Wasserstein GAN
+
+Martin Arjovsky, Soumith Chintala, Leon Bottou
+
+[1701.07875] Wasserstein GAN
+
+////////////////////////////////////////////////////////////////////////////////////////////////最後補充一點，作者?了讓沒有GPU的人也能測試這些實現，比較傾向於使用密集層（dense layer），只要在模型中能得出合理的結果，就不會去用卷積層。
+
+— 完 —
+http://bangqu.com/uA82E4.html
